@@ -1,3 +1,14 @@
+wingpanel-indicator-sysmon (0.7.0) focal; urgency=medium
+
+  * Added ability to reorder the displayed widgets via up/down buttons in the settings window
+  * Widgets now show their value before their icon
+  * Increased spacing between widgets in the panel
+  * Added install script for building and installing from source
+
+
+ -- Ken Kölzer <05beben_aera@icloud.com>  Tue, 04 Aug 2026 12:00:00 +0100
+
+
 wingpanel-indicator-sysmon (0.6.6) focal; urgency=medium
 
   * Updated CPU temp label sensor detection rule for AMD CPUs and newer kernels

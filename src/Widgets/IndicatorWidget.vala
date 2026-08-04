@@ -52,8 +52,8 @@ namespace WingpanelSystemMonitor {
             label = new Gtk.Label (_("N/A"));
             label.set_width_chars (char_width);
 
-            group.pack_start (icon);
             group.pack_start (label);
+            group.pack_start (icon);
 
             widget_revealer = new Gtk.Revealer ();
             widget_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_RIGHT;

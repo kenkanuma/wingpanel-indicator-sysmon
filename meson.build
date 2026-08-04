@@ -2,7 +2,7 @@
 project (
     'com.github.casasfernando.wingpanel-indicator-sysmon',
     'c', 'vala',
-    version: '0.6.5'
+    version: '0.7.0'
 )
 
 # GNOME module

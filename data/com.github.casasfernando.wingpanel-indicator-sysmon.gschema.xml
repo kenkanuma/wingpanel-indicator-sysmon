@@ -45,5 +45,10 @@
       <summary>Show workspace number in Wingpanel</summary>
       <description></description>
     </key>
+    <key type="as" name="widgets-order">
+      <default>['cpu', 'cpu-temp', 'ram', 'network', 'disk', 'workspace']</default>
+      <summary>Order of the widgets displayed in Wingpanel</summary>
+      <description></description>
+    </key>
   </schema>
 </schemalist>

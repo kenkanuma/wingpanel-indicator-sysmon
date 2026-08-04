@@ -38,13 +38,14 @@ namespace WingpanelSystemMonitor {
             // Define widget icons and sizes
             // Network icon
             var icon = new Gtk.Image.from_icon_name ("net-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+            icon.margin_start = 4;
             // Upload icon
             var icon_up = new Gtk.Image.from_icon_name ("upload-read-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             icon_up.set_pixel_size (10);
+            icon_up.margin_start = 4;
             // Download icon
             var icon_down = new Gtk.Image.from_icon_name ("download-write-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             icon_down.set_pixel_size (10);
-            icon_up.margin_start = 4;
             icon_down.margin_start = 4;
 
             // Define upload value label
@@ -54,7 +55,6 @@ namespace WingpanelSystemMonitor {
             upload_label.set_yalign (1);
             var upload_label_context = upload_label.get_style_context ();
             upload_label_context.add_class ("small-label");
-            upload_label_context.add_class ("upload-read-download-write");
 
             // Define download value label
             download_label = new Gtk.Label (_("N/A"));
@@ -63,23 +63,22 @@ namespace WingpanelSystemMonitor {
             download_label.set_yalign (0);
             var down_label_context = download_label.get_style_context ();
             down_label_context.add_class ("small-label");
-            down_label_context.add_class ("upload-read-download-write");
 
             // Define widget packaging grid
             var group = new Gtk.Grid ();
             group.set_column_spacing (0);
             group.set_row_spacing (0);
             group.set_row_homogeneous (true);
-            // Add network icon
-            group.attach (icon, 0, 0, 1, 2);
+            // Add upload value label
+            group.attach (upload_label, 0, 0, 1, 1);
+            // Add download value label
+            group.attach (download_label, 0, 1, 1, 1);
             // Add upload icon
             group.attach (icon_up, 1, 0, 1, 1);
             // Add download icon
-            group.attach_next_to (icon_down, icon_up, Gtk.PositionType.BOTTOM, 1, 1);
-            // Add upload value label
-            group.attach (upload_label, 2, 0, 1, 1);
-            // Add download value label
-            group.attach_next_to (download_label, upload_label, Gtk.PositionType.BOTTOM, 1, 1);
+            group.attach (icon_down, 1, 1, 1, 1);
+            // Add network icon
+            group.attach (icon, 2, 0, 1, 2);
 
             widget_revealer = new Gtk.Revealer ();
             widget_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_RIGHT;

@@ -24,6 +24,16 @@
   <url type="bugtracker">https://github.com/casasfernando/wingpanel-indicator-sysmon/issues</url>
   <url type="help">https://github.com/casasfernando/wingpanel-indicator-sysmon/issues</url>
   <releases>
+    <release version="0.7.0" date="2026-08-04">
+      <description>
+        <ul>
+          <li>Added ability to reorder the displayed widgets via up/down buttons in the settings window</li>
+          <li>Widgets now show their value before their icon</li>
+          <li>Increased spacing between widgets in the panel</li>
+          <li>Added install script for building and installing from source</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.0" date="2020-02-05">
 ​      <description>
 ​         <ul>

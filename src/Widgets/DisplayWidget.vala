@@ -23,7 +23,7 @@
 
 
 namespace WingpanelSystemMonitor {
-    public class DisplayWidget : Gtk.Grid {
+    public class DisplayWidget : Gtk.Box {
         private IndicatorWidget cpu_info;
         private IndicatorWidget cpu_temp_info;
         private IndicatorWidget ram_info;
@@ -35,19 +35,26 @@ namespace WingpanelSystemMonitor {
         public unowned Settings settings { get; construct set; }
 
         public DisplayWidget (Settings settings) {
-            Object (settings: settings);
+            Object (settings: settings, orientation: Gtk.Orientation.HORIZONTAL);
         }
 
         construct {
             valign = Gtk.Align.CENTER;
 
+            const int ELEMENT_SPACING = 6;
 
             cpu_info = new IndicatorWidget ("cpu-symbolic", 4);
+            cpu_info.margin_start = ELEMENT_SPACING;
             cpu_temp_info = new IndicatorWidget ("cpu-temperature-symbolic", 4);
+            cpu_temp_info.margin_start = ELEMENT_SPACING;
             ram_info = new IndicatorWidget ("ram-symbolic", 4);
+            ram_info.margin_start = ELEMENT_SPACING;
             network_info = new NetworkWidget ();
+            network_info.margin_start = ELEMENT_SPACING;
             disk_info = new DiskWidget ();
+            disk_info.margin_start = ELEMENT_SPACING;
             workspace_info = new IndicatorWidget ("computer-symbolic", 2);
+            workspace_info.margin_start = ELEMENT_SPACING;
             icon_only = new IndicatorWidget ("indicator-symbolic", 0);
             icon_only.label_value = "";
 
@@ -58,6 +65,36 @@ namespace WingpanelSystemMonitor {
             add (network_info);
             add (disk_info);
             add (workspace_info);
+
+            reorder_widgets ();
+            settings.changed["widgets-order"].connect (reorder_widgets);
+        }
+
+        private unowned Gtk.Widget get_widget_for_key (string key) {
+            switch (key) {
+                case "cpu":
+                    return cpu_info;
+                case "cpu-temp":
+                    return cpu_temp_info;
+                case "ram":
+                    return ram_info;
+                case "network":
+                    return network_info;
+                case "disk":
+                    return disk_info;
+                case "workspace":
+                default:
+                    return workspace_info;
+            }
+        }
+
+        private void reorder_widgets () {
+            string[] order = settings.get_strv ("widgets-order");
+            int position = 1;
+            foreach (unowned string key in order) {
+                reorder_child (get_widget_for_key (key), position);
+                position++;
+            }
         }
 
         public void set_widget_visible (Gtk.Widget widget, bool visible) {

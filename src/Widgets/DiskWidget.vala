@@ -38,12 +38,15 @@ namespace WingpanelSystemMonitor {
             // Define widget icons and sizes
             // Disk icon
             var icon = new Gtk.Image.from_icon_name ("disk-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+            icon.margin_start = 4;
             // Read icon
             var icon_read = new Gtk.Image.from_icon_name ("upload-read-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             icon_read.set_pixel_size (10);
+            icon_read.margin_start = 4;
             // Write icon
             var icon_write = new Gtk.Image.from_icon_name ("download-write-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             icon_write.set_pixel_size (10);
+            icon_write.margin_start = 4;
 
             // Define read value label
             read_label = new Gtk.Label (_("N/A"));
@@ -52,7 +55,6 @@ namespace WingpanelSystemMonitor {
             read_label.set_yalign (1);
             var read_label_context = read_label.get_style_context ();
             read_label_context.add_class ("small-label");
-            read_label_context.add_class ("upload-read-download-write");
 
             // Define download value label
             write_label = new Gtk.Label (_("N/A"));
@@ -61,23 +63,22 @@ namespace WingpanelSystemMonitor {
             write_label.set_yalign (0);
             var write_label_context = write_label.get_style_context ();
             write_label_context.add_class ("small-label");
-            write_label_context.add_class ("upload-read-download-write");
 
             // Define widget packaging grid
             var group = new Gtk.Grid ();
             group.set_column_spacing (0);
             group.set_row_spacing (0);
             group.set_row_homogeneous (true);
-            // Add disk icon
-            group.attach (icon, 0, 0, 1, 2);
+            // Add read value label
+            group.attach (read_label, 0, 0, 1, 1);
+            // Add write value label
+            group.attach (write_label, 0, 1, 1, 1);
             // Add read icon
             group.attach (icon_read, 1, 0, 1, 1);
             // Add write icon
-            group.attach_next_to (icon_write, icon_read, Gtk.PositionType.BOTTOM, 1, 1);
-            // Add read value label
-            group.attach (read_label, 2, 0, 1, 1);
-            // Add write value label
-            group.attach_next_to (write_label, read_label, Gtk.PositionType.BOTTOM, 1, 1);
+            group.attach (icon_write, 1, 1, 1, 1);
+            // Add disk icon
+            group.attach (icon, 2, 0, 1, 2);
 
             widget_revealer = new Gtk.Revealer ();
             widget_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_RIGHT;
