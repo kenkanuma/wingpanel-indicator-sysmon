@@ -3,6 +3,10 @@
 </p>
 <h1 align="center">Wingpanel System Monitor</h1>
 
+## Fork notice
+
+This is a fork of [casasfernando/wingpanel-indicator-sysmon](https://github.com/casasfernando/wingpanel-indicator-sysmon), which its original author archived. This fork keeps the project going with small fixes; see [Changes in this fork](#changes-in-this-fork) below.
+
 ## Archive notice
 
 Since I decided to migrate to a different distro, it's time for me to let this project go and archive it.
@@ -41,16 +45,6 @@ Being this one of my first Vala applications I'm sure that the code can be impro
 - elementary OS 6.0 Odin
 - elementary OS 7.0 Horus
 - elementary OS 8.0 Circe
-
-## Screenshots
-
-### Indicator:
-![Screenshot](data/screenshots/screenshot_1.png)
-### Popover:
-![Screenshot](data/screenshots/screenshot_2.png)
-![Screenshot](data/screenshots/screenshot_3.png)
-### Settings:
-![Screenshot](data/screenshots/screenshot_4.png)
 
 ## Building and installation from source
 
@@ -102,14 +96,11 @@ sudo ninja install
 com.github.casasfernando.wingpanel-indicator-sysmon
 ```
 
-## Installation using the deb package
+## Changes in this fork
 
-You can also find a deb package available with every release in the releases page.
-To install it you just need to download the package for your elementary OS release and run:
-
-```
-sudo dpkg -i wingpanel-indicator-sysmon_<release>_<hera|odin>_amd64.deb
-```
+- Network/disk throughput is now displayed rounded to KB/s and up (no more raw B/s values); speeds below 1 KB/s show as 0 or 1 KB/s.
+- Added spacing between the network icon and the up/down arrows in the network widget.
+- Added Dependabot config for GitHub Actions updates.
 
 ## Special thanks and credits
  - [Plugaru T.](https://github.com/PlugaruT/) for developing the [original project](https://github.com/PlugaruT/wingpanel-monitor).
