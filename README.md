@@ -7,17 +7,11 @@
 
 This is a fork of [casasfernando/wingpanel-indicator-sysmon](https://github.com/casasfernando/wingpanel-indicator-sysmon), which its original author archived. This fork keeps the project going with small fixes; see [Changes in this fork](#changes-in-this-fork) below.
 
-## Archive notice
-
-Since I decided to migrate to a different distro, it's time for me to let this project go and archive it.
-
 ## About
 
-Wingpanel System Monitor is a status indicator that displays current system resources usage information in elementary OS Wingpanel.
+Wingpanel System Monitor is a status indicator that displays current system resource usage information in elementary OS Wingpanel.
 
-Being this one of my first Vala applications I'm sure that the code can be improved, so:
-
-- If you find any problems while running the application please report it through an issue.
+- Problems while running the application can be reported through an issue.
 - Pull requests and translations are welcome.
 - Feedback and suggestions are always welcome as well.
 
@@ -47,6 +41,16 @@ Being this one of my first Vala applications I'm sure that the code can be impro
 - elementary OS 8.0 Circe
 
 ## Building and installation from source
+
+### Quick install
+
+[`install.sh`](install.sh) installs the required build dependencies for the detected elementary OS version, then clones, builds, and installs the application:
+
+```
+curl -fsSL https://raw.githubusercontent.com/kenkanuma/wingpanel-indicator-sysmon/master/install.sh | bash
+```
+
+### Manual install
 
 You'll need the following dependencies:
 
@@ -101,6 +105,7 @@ com.github.casasfernando.wingpanel-indicator-sysmon
 - Network/disk throughput is now displayed rounded to KB/s and up (no more raw B/s values); speeds below 1 KB/s show as 0 or 1 KB/s.
 - Added spacing between the network icon and the up/down arrows in the network widget.
 - Added Dependabot config for GitHub Actions updates.
+- Added an [install script](install.sh) that installs dependencies, builds, and installs the application.
 
 ## Special thanks and credits
  - [Plugaru T.](https://github.com/PlugaruT/) for developing the [original project](https://github.com/PlugaruT/wingpanel-monitor).
