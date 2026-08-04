@@ -44,6 +44,8 @@ namespace WingpanelSystemMonitor {
             // Download icon
             var icon_down = new Gtk.Image.from_icon_name ("download-write-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             icon_down.set_pixel_size (10);
+            icon_up.margin_start = 4;
+            icon_down.margin_start = 4;
 
             // Define upload value label
             upload_label = new Gtk.Label (_("N/A"));

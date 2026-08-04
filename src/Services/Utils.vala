@@ -73,9 +73,9 @@ namespace WingpanelSystemMonitor {
         }
 
         public static string format_net_speed (int bytes, bool round, bool in_bits) {
-            string[] sizes = { " B/s", "KB/s", "MB/s", "GB/s", "TB/s" };
-            string[] sizes_in_bits = { " b/s", "Kb/s", "Mb/s", "Gb/s", "Tb/s" };
-            double len = (double)bytes;
+            string[] sizes = { "KB/s", "MB/s", "GB/s", "TB/s" };
+            string[] sizes_in_bits = { "Kb/s", "Mb/s", "Gb/s", "Tb/s" };
+            double len = (double)bytes / 1024;
             int order = 0;
             string speed = "";
             while (len >= 1024 && order < sizes.length - 1) {
