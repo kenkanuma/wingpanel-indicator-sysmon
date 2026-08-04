@@ -52,7 +52,7 @@ namespace WingpanelSystemMonitor {
                 string hwmon_if_name = "";
                 try {
                     FileUtils.get_contents (hwmon_if_path, out hwmon_if_name);
-                    hwmon_if_name = hwmon_if_name.replace ("\n","");
+                    hwmon_if_name = hwmon_if_name.replace ("\n", "");
                     // Check if the interface is a CPU temperature sensor
                     // Intel: coretemp
                     // AMD: k10temp
@@ -63,18 +63,25 @@ namespace WingpanelSystemMonitor {
 
                     // Walkthrough each CPU temperature sensor looking for the CPU package temperature sensor
                     while (cpu_walk) {
-                        string cpu_temp_sensor_label_path = "/sys/class/hwmon/hwmon".concat (hwmon_idx.to_string (), "/temp", core_idx.to_string (), "_label");
-                        string cpu_temp_sensor_value_path = "/sys/class/hwmon/hwmon".concat (hwmon_idx.to_string (), "/temp", core_idx.to_string (), "_input");
-                        if (!FileUtils.test (cpu_temp_sensor_label_path, FileTest.EXISTS) || !FileUtils.test (cpu_temp_sensor_value_path, FileTest.EXISTS)) {
+                        string cpu_temp_sensor_label_path = "/sys/class/hwmon/hwmon".concat (
+                            hwmon_idx.to_string (), "/temp", core_idx.to_string (), "_label"
+                        );
+                        string cpu_temp_sensor_value_path = "/sys/class/hwmon/hwmon".concat (
+                            hwmon_idx.to_string (), "/temp", core_idx.to_string (), "_input"
+                        );
+                        if (!FileUtils.test (cpu_temp_sensor_label_path, FileTest.EXISTS) ||
+                            !FileUtils.test (cpu_temp_sensor_value_path, FileTest.EXISTS)) {
                             cpu_walk = false;
                             continue;
                         }
                         // Get CPU temperature sensor label
                         string cpu_temp_sensor_label = "";
                         FileUtils.get_contents (cpu_temp_sensor_label_path, out cpu_temp_sensor_label);
-                        cpu_temp_sensor_label = cpu_temp_sensor_label.replace ("\n","");
+                        cpu_temp_sensor_label = cpu_temp_sensor_label.replace ("\n", "");
                         // Check if the CPU temperature sensor is for the CPU package or a CPU core
-                        if (!cpu_temp_sensor_label.contains ("Package") && !cpu_temp_sensor_label.contains ("Tdie") && !cpu_temp_sensor_label.contains ("Tctl")) {
+                        if (!cpu_temp_sensor_label.contains ("Package") &&
+                            !cpu_temp_sensor_label.contains ("Tdie") &&
+                            !cpu_temp_sensor_label.contains ("Tctl")) {
                             core_idx++;
                             continue;
                         }
@@ -85,7 +92,8 @@ namespace WingpanelSystemMonitor {
                         cpu_walk = false;
                     }
                 } catch (FileError e) {
-                    warning ("wingpanel-indicator-sysmon: can't open temperature sensor file. CPU temperature value not available");
+                    warning ("wingpanel-indicator-sysmon: can't open temperature sensor file. " +
+                        "CPU temperature value not available");
                 }
 
                 hwmon_idx++;

@@ -93,7 +93,7 @@ namespace WingpanelSystemMonitor {
             } else {
                 cpuf = _("N/A");
             }
-            cpu.label_value = "%s / %s".printf(cpuper.to_string () + "%", cpuf);
+            cpu.label_value = "%s / %s".printf (cpuper.to_string () + "%", cpuf);
         }
 
         public void update_cpu_temp (int cputemp) {

@@ -49,21 +49,22 @@ namespace WingpanelSystemMonitor {
 
             try {
                 string content = null;
-                FileUtils.get_contents (@"/proc/diskstats", out content);
+                FileUtils.get_contents ("/proc/diskstats", out content);
                 InputStream input_stream = new MemoryInputStream.from_data (content.data, GLib.g_free);
                 DataInputStream dis = new DataInputStream (input_stream);
                 string line;
 
                 while ((line = dis.read_line ()) != null) {
-                    string[] reg_split = Regex.split_simple("[ ]+", line);
-                    if ((reg_split[1] == "8" && Regex.match_simple ("sd[a-z]{1}$", reg_split[3])) || (reg_split[1] == "259" && Regex.match_simple ("nvme[0-9]n[0-9]{1}$", reg_split[3]))) {
-                        n_bytes_read += ulong.parse(reg_split[6]);
-                        n_bytes_write += ulong.parse(reg_split[10]);
+                    string[] reg_split = Regex.split_simple ("[ ]+", line);
+                    if ((reg_split[1] == "8" && Regex.match_simple ("sd[a-z]{1}$", reg_split[3])) ||
+                        (reg_split[1] == "259" && Regex.match_simple ("nvme[0-9]n[0-9]{1}$", reg_split[3]))) {
+                        n_bytes_read += ulong.parse (reg_split[6]);
+                        n_bytes_write += ulong.parse (reg_split[10]);
                     }
 
                 }
             } catch (Error e) {
-                warning("Could not retrieve disk data");
+                warning ("Could not retrieve disk data");
             }
 
             _bytes_read = (int)((n_bytes_read - _bytes_read_old) * 512);
@@ -74,4 +75,3 @@ namespace WingpanelSystemMonitor {
 
     }
 }
-

@@ -58,7 +58,9 @@ namespace WingpanelSystemMonitor {
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
             );
 
-            Gtk.IconTheme.get_default ().add_resource_path ("/com/github/casasfernando/wingpanel-indicator-sysmon/icons");
+            Gtk.IconTheme.get_default ().add_resource_path (
+                "/com/github/casasfernando/wingpanel-indicator-sysmon/icons"
+            );
             cpu_data = new CPU ();
             cpu_temp_data = new CPUTemperature ();
             memory_data = new Memory ();
@@ -134,7 +136,8 @@ public Wingpanel.Indicator ? get_indicator (Module module, Wingpanel.IndicatorMa
     debug ("wingpanel-indicator-sysmon: loading system monitor indicator");
 
     if (server_type != Wingpanel.IndicatorManager.ServerType.SESSION) {
-        debug ("wingpanel-indicator-sysmon: Wingpanel is not in session, not loading wingpanel-indicator-sysmon indicator");
+        debug ("wingpanel-indicator-sysmon: Wingpanel is not in session, not loading " +
+            "wingpanel-indicator-sysmon indicator");
         return null;
     }
 
